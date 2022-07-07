@@ -10,8 +10,22 @@ window.onload = () => {
   var engine = Engine.create();
   engine.world.gravity.y = 0;
   engine.world.gravity.scale = 0;
-  const vector = Matter.Vector.create(0, 0.2);
-  const vector1 = Matter.Vector.create(0.1, 0.3);
+  const vector = Matter.Vector.create(
+    Math.random() * 0.4 - 0.2,
+    Math.random() * 0.4 - 0.2
+  );
+  const vector1 = Matter.Vector.create(
+    Math.random() * 0.4 - 0.2,
+    Math.random() * 0.4 - 0.2
+  );
+  const vector2 = Matter.Vector.create(
+    Math.random() * 0.4 - 0.2,
+    Math.random() * 0.4 - 0.2
+  );
+  const vector3 = Matter.Vector.create(
+    Math.random() * 0.4 - 0.2,
+    Math.random() * 0.4 - 0.2
+  );
   // create a renderer
   var render = Render.create({
     element: document.body,
@@ -38,6 +52,9 @@ window.onload = () => {
         family: "sans-serif",
       },
     },
+    friction: 0,
+    frictionAir: 0,
+    frictionStatic: 0,
   });
   var circle2 = Bodies.circle(450, 50, 40, {
     render: {
@@ -51,10 +68,43 @@ window.onload = () => {
         family: "sans-serif",
       },
     },
+    friction: 0,
+    frictionAir: 0,
+    frictionStatic: 0,
   });
   var ground = Bodies.rectangle(
     window.innerWidth / 2,
+    window.innerHeight + 25,
+    window.innerWidth,
+    40,
+    {
+      isStatic: true,
+    }
+  );
+
+  var left = Bodies.rectangle(
+    -25,
+    window.innerHeight / 2,
+    40,
     window.innerHeight,
+    {
+      isStatic: true,
+    }
+  );
+
+  var right = Bodies.rectangle(
+    window.innerWidth + 25,
+    window.innerHeight / 2,
+    40,
+    window.innerHeight,
+    {
+      isStatic: true,
+    }
+  );
+
+  var top = Bodies.rectangle(
+    window.innerWidth / 2,
+    -25,
     window.innerWidth,
     40,
     {
@@ -64,8 +114,9 @@ window.onload = () => {
 
   console.log("circle1", circle1);
   // add all of the bodies to the world
-  Composite.add(engine.world, [circle1, circle2, ground]);
+  Composite.add(engine.world, [circle1, circle2, ground, left, right, top]);
   Matter.Body.applyForce(circle1, vector, vector1);
+  Matter.Body.applyForce(circle2, vector2, vector3);
 
   // run the renderer
   Render.run(render);
