@@ -11,3 +11,16 @@ canvas{
     height: 100%;
     background-color: #cece;
 }
+
+a{
+    z-index: 99;
+    font-size: 2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+}
