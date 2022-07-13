@@ -192,12 +192,12 @@ window.onload = () => {
         for (let i = 0; i < result.length; i++) {
           //create pair of vetor for each particle
           position[i] = Matter.Vector.create(
-            Math.random() * 0.01 - 0.02,
-            Math.random() * 0.02 - 0.03
+            Math.random() * 0.001 - 0.002,
+            Math.random() * 0.002 - 0.003
           );
           force[i] = Matter.Vector.create(
-            Math.random() * 0.01 - 0.02,
-            Math.random() * 0.02 - 0.03
+            Math.random() * 0.001 - 0.002,
+            Math.random() * 0.002 - 0.003
           );
           Matter.Body.applyForce(result[i], position[i], force[i]);
         }
